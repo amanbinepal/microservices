@@ -1,0 +1,9 @@
+version: 1
+datastore:
+  filename: data.json
+scheduler:
+  period_sec: 5
+eventstore1:
+  url: http://localhost:8090/cars/selection
+eventstore2:
+  url: http://localhost:8090/cars/schedule

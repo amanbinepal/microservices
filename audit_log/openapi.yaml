@@ -1,0 +1,136 @@
+openapi: 3.0.0
+info:
+  description: This API provides audit info
+  version: "1.0.0"
+  title: Audit API
+  contact:
+    email: abinepal@my.bcit.ca
+paths:
+  /car_selection:
+    get:
+      summary: gets car selection from history
+      operationId: app.get_car_selection
+      description: Gets car_selection from the event store
+      parameters:
+        - name: index
+          in: query
+          description: Gets the car selection at the index in the event store
+          schema:
+            type: string
+            example: Honda Civic
+      responses:
+        '200':
+          description: Successfully returned a car selection event
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: '#/components/schemas/CarSelection'
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+  /car_schedule:
+    get:
+      summary: gets a car schedule from history
+      operationId: app.get_car_schedule
+      description: Gets car schedule from the event store
+      parameters:
+        - name: index
+          in: query
+          description: Gets the car schedule at the index in the event store
+          schema:
+            type: string
+            format: date-time
+            example: "2016-08-29T09:12:33.001Z"
+      responses:
+        '200':
+          description: Successfully returned a car schedule event
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: '#/components/schemas/CarSchedule'
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '404':
+          description: Not Found
+components:
+  schemas:
+    CarSelection:
+      required:
+      - car_id
+      - type
+      - passenger_capacity
+      - year
+      - make
+      - model
+      properties:
+        car_id:
+          type: string
+          format: uuid
+          example: d290f1ee-6c54-4b01-90e6-d701748f0851
+        type:
+          type: string
+          example: Truck
+        passenger_capacity:
+          type: integer
+          example: 2
+        year:
+          type: integer
+          example: 2017
+      type: object
+    CarSchedule:
+      required:
+      - sched_id
+      - location
+      - start_time
+      - days
+      - est_kms
+      - end_time
+      properties:
+        sched_id:
+          type: string
+          format: uuid
+          example: d290f1ee-6c54-4b01-90e6-d701748f0851
+        location:
+          type: string
+          example: Surrey
+        start_time:
+          type: string
+          format: date-time
+          example: '2016-08-29T09:12:33.001Z'
+        days:
+          type: integer
+          example: 2
+        est_kms:
+          type: integer
+          example: 500
+        end_time:
+          type: string
+          format: date-time
+          example: '2016-08-29T09:12:33.001Z'
+      type: object

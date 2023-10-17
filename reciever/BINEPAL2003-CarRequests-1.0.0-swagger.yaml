@@ -1,0 +1,185 @@
+openapi: 3.0.0
+servers: []
+info:
+  description: This API car requests and scheduling requests from drivers
+  version: "1.0.0"
+  title: Car Request API
+  contact:
+    email: abinepal@my.bcit.ca
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+tags:
+  - name: drivers
+    description: Operations available to drivers
+paths:
+  /cars/selection:
+    post:
+      tags:
+        - drivers
+      summary: selects the drivers choice of car
+      operationId: app.select_car
+      description: |
+        By passing in the appropriate options, you will be able to select the car of your choice
+      
+      responses:
+        '201':
+          description: car selected successfully
+    
+        '400':
+          description: bad input parameter
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CarChoice'
+        description: Car to add
+    # get:
+    #   tags:
+    #     - drivers
+    #   summary: gets the car selection of the driver
+    #   operationId: app.get_car
+    #   description: Gets the car selection of the driver
+    #   parameters:
+    #     - name: timestamp
+    #       in: query
+    #       description: Limits the number of items on a page
+    #       schema:
+    #         type: string
+    #         format: date-time
+    #         example: '2016-08-29T09:12:33.001Z'
+    #   responses:
+    #     '200':
+    #       description: Successfully returned a list of cars
+    #       content:
+    #         application/json:
+    #           schema:
+    #             type: array
+    #             items:
+    #               $ref: '#/components/schemas/CarChoice'
+    #     '400':
+    #       description: Invalid request
+    #       content:
+    #         application/json:
+    #           schema:
+    #             type: object
+    #             properties:
+    #               message:
+    #                 type: string
+          
+  /cars/schedule:
+    post:
+      tags:
+        - drivers
+      summary: allows driver to schedule a date and time for pick up and drop off
+      operationId: app.select_time
+      description: selects a time frame the selected car is going to be used by the driver
+      responses:
+        '201':
+          description: scheduled successfully
+        '400':
+          description: 'invalid input, object invalid'
+        '409':
+          description: someone else already scheduled
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ScheduleChoice'
+        description: Schedule time frame to add
+
+    # get:
+    #   tags:
+    #     - drivers
+    #   summary: gets the schedule of the driver
+    #   operationId: app.get_schedule
+    #   description: Gets the schedule of the driver
+    #   parameters:
+    #     - name: timestamp
+    #       in: query
+    #       description: Limits the number of items on a page
+    #       schema:
+    #         type: string
+    #         format: date-time
+    #         example: '2016-08-29T09:12:33.001Z'
+    #   responses:
+    #     '200':
+    #       description: Successfully returned a list of schedules
+    #       content:
+    #         application/json:
+    #           schema:
+    #             type: array
+    #             items:
+    #               $ref: '#/components/schemas/ScheduleChoice'
+    #     '400':
+    #       description: Invalid request
+    #       content:
+    #         application/json:
+    #           schema:
+    #             type: object
+    #             properties:
+    #               message:
+    #                 type: string
+components:
+  schemas:
+    CarChoice:
+      type: object
+      required:
+        - car_id
+        - type
+        - passenger_capacity
+        - year
+        - make
+        - model
+      properties:
+        car_id:
+          type: string
+          format: uuid
+          example: d290f1ee-6c54-4b01-90e6-d701748f0851
+        type:
+          type: string
+          example: Truck
+        passenger_capacity:
+          type: integer
+          example: 2
+        year:
+          type: integer
+          example: 2017
+        make:
+          type: string
+          example: Ford
+        model:
+          type: string
+          example: F550
+    ScheduleChoice:
+      required:
+        - sched_id
+        - location
+        - start_time
+        - days
+        - est_kms
+        - end_time
+      properties:
+        sched_id:
+          type: string
+          format: uuid
+          example: d290f1ee-6c54-4b01-90e6-d701748f0852
+        location:
+          type: string
+          example: Surrey
+        start_time:
+          type: string
+          format: date-time
+          example: '2016-08-29T09:12:33.001Z'
+        days:
+          type: integer
+          example: 2
+        est_kms:
+          type: integer
+          example: 500
+        end_time:
+          type: string
+          format: date-time
+          example: '2016-08-29T09:12:33.001Z'
+        
+      type: object

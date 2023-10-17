@@ -1,0 +1,236 @@
+2023-10-13 08:47:10,849 - basicLogger - INFO - Retrieving Car Selection at index 1
+2023-10-13 08:47:11,077 - basicLogger - INFO - Found Car Selection at index 1
+2023-10-13 08:52:06,734 - basicLogger - INFO - Retrieving Car Selection at index 1
+2023-10-13 08:52:06,986 - basicLogger - INFO - Found Car Selection at index 1
+2023-10-13 08:52:06,986 - basicLogger - ERROR - No more messages found
+2023-10-13 08:52:06,986 - basicLogger - ERROR - Could not find Car Selection at index 1
+2023-10-13 08:52:14,686 - basicLogger - INFO - Retrieving Car Selection at index 0
+2023-10-13 08:52:15,932 - basicLogger - ERROR - Could not find Car Selection at index 0
+2023-10-13 08:52:19,522 - basicLogger - INFO - Retrieving Car Selection at index 2
+2023-10-13 08:52:19,876 - basicLogger - INFO - Found Car Selection at index 2
+2023-10-13 08:52:19,876 - basicLogger - ERROR - No more messages found
+2023-10-13 08:52:19,884 - basicLogger - ERROR - Could not find Car Selection at index 2
+2023-10-13 08:52:22,635 - basicLogger - INFO - Retrieving Car Selection at index 9
+2023-10-13 08:52:22,984 - basicLogger - INFO - Found Car Selection at index 9
+2023-10-13 08:52:22,984 - basicLogger - ERROR - No more messages found
+2023-10-13 08:52:22,984 - basicLogger - ERROR - Could not find Car Selection at index 9
+2023-10-13 08:52:26,561 - basicLogger - INFO - Retrieving Car Selection at index 10
+2023-10-13 08:52:26,826 - basicLogger - INFO - Found Car Selection at index 10
+2023-10-13 08:52:26,826 - basicLogger - ERROR - No more messages found
+2023-10-13 08:52:26,826 - basicLogger - ERROR - Could not find Car Selection at index 10
+2023-10-13 08:52:38,893 - basicLogger - INFO - Retrieving Car Schedule at index 10
+2023-10-13 08:52:39,146 - basicLogger - INFO - Found Car Schedule at index 10
+2023-10-13 08:52:39,146 - basicLogger - ERROR - No more messages found
+2023-10-13 08:52:39,146 - basicLogger - ERROR - Could not find Car Schedule at index 10
+2023-10-13 08:53:11,140 - basicLogger - INFO - Retrieving Car Schedule at index 10
+2023-10-13 08:53:11,549 - basicLogger - INFO - Found Car Schedule at index 10
+2023-10-13 08:53:19,379 - basicLogger - INFO - Retrieving Car Schedule at index 1
+2023-10-13 08:53:19,722 - basicLogger - INFO - Found Car Schedule at index 1
+2023-10-13 08:53:28,971 - basicLogger - INFO - Retrieving Car Schedule at index 2
+2023-10-13 08:53:29,463 - basicLogger - INFO - Found Car Schedule at index 2
+2023-10-13 08:56:36,099 - basicLogger - INFO - Retrieving Car Schedule at index 2
+2023-10-13 08:56:36,315 - basicLogger - INFO - Found Car Schedule at index 2
+2023-10-13 08:56:41,530 - basicLogger - INFO - Retrieving Car Schedule at index 1
+2023-10-13 08:56:41,757 - basicLogger - INFO - Found Car Schedule at index 1
+2023-10-13 08:56:53,012 - basicLogger - INFO - Retrieving Car Selection at index 1
+2023-10-13 08:56:54,265 - basicLogger - ERROR - Could not find Car Selection at index 1
+2023-10-13 08:56:59,176 - basicLogger - INFO - Retrieving Car Selection at index 0
+2023-10-13 08:56:59,398 - basicLogger - INFO - Found Car Selection at index 0
+2023-10-13 08:57:04,070 - basicLogger - INFO - Retrieving Car Selection at index 0
+2023-10-13 08:57:04,292 - basicLogger - INFO - Found Car Selection at index 0
+2023-10-13 08:57:07,013 - basicLogger - INFO - Retrieving Car Selection at index 1
+2023-10-13 08:57:08,255 - basicLogger - ERROR - Could not find Car Selection at index 1
+2023-10-13 08:57:12,060 - basicLogger - INFO - Retrieving Car Selection at index 2
+2023-10-13 08:57:13,285 - basicLogger - ERROR - Could not find Car Selection at index 2
+2023-10-13 08:57:14,517 - basicLogger - INFO - Retrieving Car Selection at index 2
+2023-10-13 08:57:15,750 - basicLogger - ERROR - Could not find Car Selection at index 2
+2023-10-13 08:57:16,703 - basicLogger - INFO - Retrieving Car Selection at index 3
+2023-10-13 08:57:17,931 - basicLogger - ERROR - Could not find Car Selection at index 3
+2023-10-13 08:57:20,981 - basicLogger - INFO - Retrieving Car Selection at index 4
+2023-10-13 08:57:22,214 - basicLogger - ERROR - Could not find Car Selection at index 4
+2023-10-13 08:57:25,261 - basicLogger - INFO - Retrieving Car Selection at index 5
+2023-10-13 08:57:26,488 - basicLogger - ERROR - Could not find Car Selection at index 5
+2023-10-13 08:57:29,586 - basicLogger - INFO - Retrieving Car Selection at index 6
+2023-10-13 08:57:30,819 - basicLogger - ERROR - Could not find Car Selection at index 6
+2023-10-13 08:57:33,493 - basicLogger - INFO - Retrieving Car Selection at index 7
+2023-10-13 08:57:34,733 - basicLogger - ERROR - Could not find Car Selection at index 7
+2023-10-13 08:57:41,009 - basicLogger - INFO - Retrieving Car Selection at index 15
+2023-10-13 08:57:42,257 - basicLogger - ERROR - Could not find Car Selection at index 15
+2023-10-13 08:57:45,391 - basicLogger - INFO - Retrieving Car Selection at index 117
+2023-10-13 08:57:46,626 - basicLogger - ERROR - Could not find Car Selection at index 117
+2023-10-13 08:57:52,311 - basicLogger - INFO - Retrieving Car Selection at index 20
+2023-10-13 08:57:53,545 - basicLogger - ERROR - Could not find Car Selection at index 20
+2023-10-13 08:57:56,561 - basicLogger - INFO - Retrieving Car Selection at index 21
+2023-10-13 08:57:57,803 - basicLogger - ERROR - Could not find Car Selection at index 21
+2023-10-13 08:58:00,582 - basicLogger - INFO - Retrieving Car Selection at index 22
+2023-10-13 08:58:01,822 - basicLogger - ERROR - Could not find Car Selection at index 22
+2023-10-13 08:58:04,890 - basicLogger - INFO - Retrieving Car Selection at index 0
+2023-10-13 08:58:05,113 - basicLogger - INFO - Found Car Selection at index 0
+2023-10-13 08:58:14,983 - basicLogger - INFO - Retrieving Car Selection at index 2
+2023-10-13 08:58:16,213 - basicLogger - ERROR - Could not find Car Selection at index 2
+2023-10-13 08:58:19,514 - basicLogger - INFO - Retrieving Car Selection at index 3
+2023-10-13 08:58:20,759 - basicLogger - ERROR - Could not find Car Selection at index 3
+2023-10-13 08:58:22,621 - basicLogger - INFO - Retrieving Car Selection at index 4
+2023-10-13 08:58:23,887 - basicLogger - ERROR - Could not find Car Selection at index 4
+2023-10-13 08:58:26,867 - basicLogger - INFO - Retrieving Car Selection at index 5
+2023-10-13 08:58:28,109 - basicLogger - ERROR - Could not find Car Selection at index 5
+2023-10-13 08:58:30,479 - basicLogger - INFO - Retrieving Car Selection at index 6
+2023-10-13 08:58:31,715 - basicLogger - ERROR - Could not find Car Selection at index 6
+2023-10-13 08:58:34,290 - basicLogger - INFO - Retrieving Car Selection at index 7
+2023-10-13 08:58:35,543 - basicLogger - ERROR - Could not find Car Selection at index 7
+2023-10-13 08:58:41,245 - basicLogger - INFO - Retrieving Car Selection at index 8
+2023-10-13 08:58:42,471 - basicLogger - ERROR - Could not find Car Selection at index 8
+2023-10-13 08:59:36,862 - basicLogger - INFO - Retrieving Car Selection at index 8
+2023-10-13 08:59:38,563 - basicLogger - ERROR - Could not find Car Selection at index 8
+2023-10-13 08:59:42,872 - basicLogger - INFO - Retrieving Car Selection at index 0
+2023-10-13 08:59:43,161 - basicLogger - INFO - Found Car Selection at index 0
+2023-10-13 09:01:08,066 - basicLogger - INFO - Retrieving Car Selection at index 0
+2023-10-13 09:01:08,387 - basicLogger - INFO - Found Car Selection at index 0
+2023-10-13 09:01:11,398 - basicLogger - INFO - Retrieving Car Selection at index 1
+2023-10-13 09:01:12,709 - basicLogger - ERROR - Could not find Car Selection at index 1
+2023-10-13 09:01:16,141 - basicLogger - INFO - Retrieving Car Selection at index 2
+2023-10-13 09:01:17,476 - basicLogger - ERROR - Could not find Car Selection at index 2
+2023-10-13 09:01:21,134 - basicLogger - INFO - Retrieving Car Selection at index 3
+2023-10-13 09:01:22,434 - basicLogger - ERROR - Could not find Car Selection at index 3
+2023-10-13 09:01:24,393 - basicLogger - INFO - Retrieving Car Selection at index 4
+2023-10-13 09:01:25,717 - basicLogger - ERROR - Could not find Car Selection at index 4
+2023-10-13 09:01:27,341 - basicLogger - INFO - Retrieving Car Selection at index 5
+2023-10-13 09:01:28,651 - basicLogger - ERROR - Could not find Car Selection at index 5
+2023-10-13 09:01:42,417 - basicLogger - INFO - Retrieving Car Selection at index 0
+2023-10-13 09:01:42,716 - basicLogger - INFO - Found Car Selection at index 0
+2023-10-13 09:01:46,569 - basicLogger - INFO - Retrieving Car Selection at index 1
+2023-10-13 09:01:47,890 - basicLogger - ERROR - Could not find Car Selection at index 1
+2023-10-13 09:01:50,440 - basicLogger - INFO - Retrieving Car Selection at index 2
+2023-10-13 09:01:51,759 - basicLogger - ERROR - Could not find Car Selection at index 2
+2023-10-13 09:01:53,997 - basicLogger - INFO - Retrieving Car Selection at index 3
+2023-10-13 09:01:55,311 - basicLogger - ERROR - Could not find Car Selection at index 3
+2023-10-13 09:01:57,718 - basicLogger - INFO - Retrieving Car Selection at index 4
+2023-10-13 09:01:59,025 - basicLogger - ERROR - Could not find Car Selection at index 4
+2023-10-13 09:02:01,410 - basicLogger - INFO - Retrieving Car Selection at index 5
+2023-10-13 09:02:02,795 - basicLogger - ERROR - Could not find Car Selection at index 5
+2023-10-13 09:02:05,319 - basicLogger - INFO - Retrieving Car Selection at index 6
+2023-10-13 09:02:06,636 - basicLogger - ERROR - Could not find Car Selection at index 6
+2023-10-13 09:02:08,666 - basicLogger - INFO - Retrieving Car Selection at index 7
+2023-10-13 09:02:09,985 - basicLogger - ERROR - Could not find Car Selection at index 7
+2023-10-13 09:02:12,210 - basicLogger - INFO - Retrieving Car Selection at index 8
+2023-10-13 09:02:13,530 - basicLogger - ERROR - Could not find Car Selection at index 8
+2023-10-13 09:02:14,201 - basicLogger - INFO - Retrieving Car Selection at index 8
+2023-10-13 09:02:15,533 - basicLogger - ERROR - Could not find Car Selection at index 8
+2023-10-13 09:02:17,759 - basicLogger - INFO - Retrieving Car Selection at index 9
+2023-10-13 09:02:19,080 - basicLogger - ERROR - Could not find Car Selection at index 9
+2023-10-13 09:02:21,344 - basicLogger - INFO - Retrieving Car Selection at index 10
+2023-10-13 09:02:22,660 - basicLogger - ERROR - Could not find Car Selection at index 10
+2023-10-13 09:02:51,564 - basicLogger - INFO - Retrieving Car Selection at index 0
+2023-10-13 09:02:51,865 - basicLogger - INFO - Found Car Selection at index 0
+2023-10-13 09:02:55,266 - basicLogger - INFO - Retrieving Car Selection at index 1
+2023-10-13 09:02:56,588 - basicLogger - ERROR - Could not find Car Selection at index 1
+2023-10-13 09:02:59,433 - basicLogger - INFO - Retrieving Car Selection at index 3
+2023-10-13 09:03:00,760 - basicLogger - ERROR - Could not find Car Selection at index 3
+2023-10-13 09:03:03,870 - basicLogger - INFO - Retrieving Car Selection at index 10
+2023-10-13 09:03:05,188 - basicLogger - ERROR - Could not find Car Selection at index 10
+2023-10-13 09:03:08,419 - basicLogger - INFO - Retrieving Car Selection at index 15
+2023-10-13 09:03:09,739 - basicLogger - ERROR - Could not find Car Selection at index 15
+2023-10-13 09:11:11,424 - basicLogger - INFO - Retrieving Car Selection at index 0
+2023-10-13 09:11:11,727 - basicLogger - INFO - Found Car Selection at index 0
+2023-10-13 09:11:15,486 - basicLogger - INFO - Retrieving Car Selection at index 1
+2023-10-13 09:11:15,782 - basicLogger - INFO - Found Car Selection at index 1
+2023-10-13 09:11:19,305 - basicLogger - INFO - Retrieving Car Selection at index 0
+2023-10-13 09:11:19,623 - basicLogger - INFO - Found Car Selection at index 0
+2023-10-13 09:11:22,473 - basicLogger - INFO - Retrieving Car Selection at index 2
+2023-10-13 09:11:22,765 - basicLogger - INFO - Found Car Selection at index 2
+2023-10-13 09:11:25,144 - basicLogger - INFO - Retrieving Car Selection at index 10
+2023-10-13 09:11:26,456 - basicLogger - ERROR - Could not find Car Selection at index 10
+2023-10-13 13:15:48,521 - basicLogger - INFO - Retrieving Car Selection at index 0
+2023-10-13 13:15:48,746 - basicLogger - INFO - Found Car Selection at index 0
+2023-10-13 13:16:02,320 - basicLogger - INFO - Retrieving Car Selection at index 10
+2023-10-13 13:16:03,610 - basicLogger - ERROR - Could not find Car Selection at index 10
+2023-10-13 13:16:13,689 - basicLogger - INFO - Retrieving Car Schedule at index 0
+2023-10-13 13:16:13,916 - basicLogger - INFO - Found Car Schedule at index 0
+2023-10-13 13:16:30,900 - basicLogger - INFO - Retrieving Car Selection at index 0
+2023-10-13 13:16:31,131 - basicLogger - INFO - Found Car Selection at index 0
+2023-10-13 13:17:03,609 - basicLogger - INFO - Retrieving Car Schedule at index 0
+2023-10-13 13:17:04,846 - basicLogger - ERROR - Could not find Car Schedule at index 0
+2023-10-13 13:17:09,358 - basicLogger - INFO - Retrieving Car Schedule at index 10
+2023-10-13 13:17:09,580 - basicLogger - INFO - Found Car Schedule at index 10
+2023-10-13 13:17:19,906 - basicLogger - INFO - Retrieving Car Selection at index 10
+2023-10-13 13:17:21,158 - basicLogger - ERROR - Could not find Car Selection at index 10
+2023-10-13 13:17:24,374 - basicLogger - INFO - Retrieving Car Selection at index 0
+2023-10-13 13:17:24,601 - basicLogger - INFO - Found Car Selection at index 0
+2023-10-13 13:28:43,146 - basicLogger - INFO - Retrieving Car Selection at index 0
+2023-10-13 13:28:44,407 - basicLogger - ERROR - Could not find Car Selection at index 0
+2023-10-13 13:28:54,352 - basicLogger - INFO - Retrieving Car Selection at index 0
+2023-10-13 13:28:55,592 - basicLogger - ERROR - Could not find Car Selection at index 0
+2023-10-13 13:29:02,117 - basicLogger - INFO - Retrieving Car Selection at index 1
+2023-10-13 13:29:03,360 - basicLogger - ERROR - Could not find Car Selection at index 1
+2023-10-13 13:29:05,987 - basicLogger - INFO - Retrieving Car Selection at index 2
+2023-10-13 13:29:07,225 - basicLogger - ERROR - Could not find Car Selection at index 2
+2023-10-13 13:31:10,398 - basicLogger - INFO - Retrieving Car Selection at index 0
+2023-10-13 13:31:10,627 - basicLogger - INFO - Found Car Selection at index 0
+2023-10-13 13:31:16,387 - basicLogger - INFO - Retrieving Car Selection at index 1
+2023-10-13 13:31:16,607 - basicLogger - INFO - Found Car Selection at index 1
+2023-10-13 13:31:20,374 - basicLogger - INFO - Retrieving Car Selection at index 0
+2023-10-13 13:31:20,592 - basicLogger - INFO - Found Car Selection at index 0
+2023-10-13 13:31:22,594 - basicLogger - INFO - Retrieving Car Selection at index 2
+2023-10-13 13:31:22,810 - basicLogger - INFO - Found Car Selection at index 2
+2023-10-13 13:31:25,112 - basicLogger - INFO - Retrieving Car Selection at index 2
+2023-10-13 13:31:25,346 - basicLogger - INFO - Found Car Selection at index 2
+2023-10-13 13:31:27,712 - basicLogger - INFO - Retrieving Car Selection at index 1
+2023-10-13 13:31:27,933 - basicLogger - INFO - Found Car Selection at index 1
+2023-10-13 13:31:30,699 - basicLogger - INFO - Retrieving Car Selection at index 500
+2023-10-13 13:31:31,941 - basicLogger - ERROR - Could not find Car Selection at index 500
+2023-10-13 13:32:47,068 - basicLogger - INFO - Retrieving Car Selection at index 0
+2023-10-13 13:32:47,294 - basicLogger - INFO - Found Car Selection at index 0
+2023-10-13 13:33:34,728 - basicLogger - INFO - Retrieving Car Selection at index 0
+2023-10-13 13:33:34,963 - basicLogger - INFO - Found Car Selection at index 0
+2023-10-13 13:33:40,464 - basicLogger - INFO - Retrieving Car Selection at index 0
+2023-10-13 13:33:40,680 - basicLogger - INFO - Found Car Selection at index 0
+2023-10-13 13:34:37,404 - basicLogger - INFO - Retrieving Car Selection at index 0
+2023-10-13 13:34:37,638 - basicLogger - INFO - Found Car Selection at index 0
+2023-10-13 13:34:41,574 - basicLogger - INFO - Retrieving Car Selection at index 0
+2023-10-13 13:34:41,795 - basicLogger - INFO - Found Car Selection at index 0
+2023-10-13 13:39:53,336 - basicLogger - INFO - Retrieving Car Selection at index 0
+2023-10-13 13:39:53,645 - basicLogger - INFO - Found Car Selection at index 0
+2023-10-13 13:39:59,749 - basicLogger - INFO - Retrieving Car Selection at index 10
+2023-10-13 13:40:00,063 - basicLogger - INFO - Found Car Selection at index 10
+2023-10-13 13:40:07,706 - basicLogger - INFO - Retrieving Car Selection at index 700
+2023-10-13 13:40:09,019 - basicLogger - ERROR - Could not find Car Selection at index 700
+2023-10-17 08:21:34,052 - basicLogger - INFO - Retrieving Car Selection at index 0
+2023-10-17 08:21:34,277 - basicLogger - INFO - Found Car Selection at index 0
+2023-10-17 08:21:49,006 - basicLogger - INFO - Retrieving Car Schedule at index 0
+2023-10-17 08:21:50,272 - basicLogger - ERROR - Could not find Car Schedule at index 0
+2023-10-17 08:23:29,088 - basicLogger - INFO - Retrieving Car Schedule at index 0
+2023-10-17 08:23:29,311 - basicLogger - INFO - Found Car Schedule at index 0
+2023-10-17 08:23:52,076 - basicLogger - INFO - Retrieving Car Schedule at index 0
+2023-10-17 08:23:52,299 - basicLogger - INFO - Found Car Schedule at index 0
+2023-10-17 08:23:58,209 - basicLogger - INFO - Retrieving Car Schedule at index 0
+2023-10-17 08:23:58,436 - basicLogger - INFO - Found Car Schedule at index 0
+2023-10-17 08:24:04,661 - basicLogger - INFO - Retrieving Car Selection at index 0
+2023-10-17 08:24:04,881 - basicLogger - INFO - Found Car Selection at index 0
+2023-10-17 08:24:09,614 - basicLogger - INFO - Retrieving Car Selection at index 100
+2023-10-17 08:24:10,854 - basicLogger - ERROR - Could not find Car Selection at index 100
+2023-10-17 08:24:17,444 - basicLogger - INFO - Retrieving Car Schedule at index 100
+2023-10-17 08:24:18,674 - basicLogger - ERROR - Could not find Car Schedule at index 100
+2023-10-17 08:24:22,598 - basicLogger - INFO - Retrieving Car Schedule at index 0
+2023-10-17 08:24:22,838 - basicLogger - INFO - Found Car Schedule at index 0
+2023-10-17 08:24:25,763 - basicLogger - INFO - Retrieving Car Schedule at index 2
+2023-10-17 08:24:25,985 - basicLogger - INFO - Found Car Schedule at index 2
+2023-10-17 08:24:37,554 - basicLogger - INFO - Retrieving Car Selection at index 0
+2023-10-17 08:24:37,774 - basicLogger - INFO - Found Car Selection at index 0
+2023-10-17 08:24:40,640 - basicLogger - INFO - Retrieving Car Selection at index 1
+2023-10-17 08:24:40,874 - basicLogger - INFO - Found Car Selection at index 1
+2023-10-17 08:24:43,420 - basicLogger - INFO - Retrieving Car Selection at index 2
+2023-10-17 08:24:43,628 - basicLogger - INFO - Found Car Selection at index 2
+2023-10-17 09:22:32,103 - basicLogger - INFO - Retrieving Car Selection at index 2
+2023-10-17 09:22:32,479 - basicLogger - INFO - Found Car Selection at index 2
+2023-10-17 09:22:37,073 - basicLogger - INFO - Retrieving Car Selection at index 500
+2023-10-17 09:22:38,474 - basicLogger - ERROR - Could not find Car Selection at index 500
+2023-10-17 09:22:44,638 - basicLogger - INFO - Retrieving Car Selection at index 300
+2023-10-17 09:22:46,040 - basicLogger - ERROR - Could not find Car Selection at index 300
+2023-10-17 09:22:51,159 - basicLogger - INFO - Retrieving Car Selection at index 200
+2023-10-17 09:22:51,566 - basicLogger - INFO - Found Car Selection at index 200
+2023-10-17 09:23:02,401 - basicLogger - INFO - Retrieving Car Schedule at index 200
+2023-10-17 09:23:02,785 - basicLogger - INFO - Found Car Schedule at index 200
+2023-10-17 09:23:07,545 - basicLogger - INFO - Retrieving Car Schedule at index 2
+2023-10-17 09:23:07,991 - basicLogger - INFO - Found Car Schedule at index 2
+2023-10-17 09:23:32,566 - basicLogger - INFO - Retrieving Car Selection at index 2
+2023-10-17 09:23:32,974 - basicLogger - INFO - Found Car Selection at index 2

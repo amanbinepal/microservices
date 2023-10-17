@@ -1,0 +1,9 @@
+version: 1
+eventstore1:
+  url: http://localhost:8090/cars/selection
+eventstore2:
+  url: http://localhost:8090/cars/schedule
+events:
+  hostname: aman3855.eastus2.cloudapp.azure.com
+  port: 9092
+  topic: events
