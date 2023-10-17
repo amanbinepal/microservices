@@ -1,0 +1,6 @@
+connexion==2.14.2
+jsonschema==4.3.3
+pykafka==2.8.0
+pyyaml==6.0
+swagger-ui-bundle==0.0.9
+requests==2.31.0
