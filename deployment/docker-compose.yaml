@@ -54,8 +54,7 @@ services:
       KAFKA_BOOTSTRAP_SERVERS: kafka:9092
 
   storage:
-    #image: storage:latest
-    build: .
+    image: storage:latest
     ports:
       - "8090:8090"
     depends_on:
