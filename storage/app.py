@@ -77,16 +77,8 @@ def get_schedule(timestamp):
         return results_list, 200
 def process_messages():
         """ Process event messages """
-        hostname = "%s:%d" % (app_config["events"]["hostname"],app_config["events"]["port"])
-        connected = False
-        while not connected:
-                try:               
-                        client = KafkaClient(hosts=hostname)
-                        connected = True
-                except:
-                        logger.error("Unable to connect to Kafka...retrying")
-                        logger.warning("Retrying connection in 5 seconds")
-                        time.sleep(5)
+        hostname = "%s:%d" % (app_config["events"]["hostname"],app_config["events"]["port"]) 
+        client = KafkaClient(hosts=hostname)
         topic = client.topics[str.encode(app_config["events"]["topic"])]
         consumer = topic.get_simple_consumer(consumer_group=b'event_group',reset_offset_on_start=False,auto_offset_reset=OffsetType.LATEST)
         for msg in consumer:
