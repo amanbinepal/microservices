@@ -55,14 +55,11 @@ services:
 
   storage:
     image: storage:latest
-    restart: always
     ports:
       - "8090:8090"
     depends_on:
-      - zookeeper
       - kafka
       - db
-      - receiver
     environment:
       KAFKA_BOOTSTRAP_SERVERS: kafka:9092
       MYSQL_HOST: db
