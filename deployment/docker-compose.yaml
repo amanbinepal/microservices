@@ -43,6 +43,49 @@ services:
       # Where our data will be persisted
     volumes:
       - my-db:/var/lib/mysql
+
+  receiver:
+    image: receiver:latest
+    ports:
+      - "8080:8080"
+    depends_on:
+      - kafka
+    environment:
+      KAFKA_BOOTSTRAP_SERVERS: kafka:9092
+
+  storage:
+    image: storage:latest
+    ports:
+      - "8090:8090"
+    depends_on:
+      - kafka
+      - db
+    environment:
+      KAFKA_BOOTSTRAP_SERVERS: kafka:9092
+      MYSQL_HOST: db
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+      MYSQL_DATABASE: carbookings
+
+  processing:
+    image: processing:latest
+    ports:
+      - "8100:8100"
+    network_mode: "host"
+    depends_on:
+      - storage
+    environment:
+      STORAGE_URL: http://localhost:8090
+
+  audit_log:
+    image: audit_log:latest
+    ports:
+      - "8110:8110"
+    depends_on:
+      - kafka
+    environment:
+      KAFKA_BOOTSTRAP_SERVERS: kafka:9092
+
 # Names our volume
 volumes:
   my-db:
