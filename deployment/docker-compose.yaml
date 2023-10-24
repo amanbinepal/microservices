@@ -55,7 +55,9 @@ services:
 
   storage:
     image: storage:latest
-    command: bash -c "sleep 30 && python app.py"
+    command: /bin/bash /usr/src/app/startup.sh
+    volumes:
+      - ./startup.sh:/usr/src/app/startup.sh
     ports:
       - "8090:8090"
     depends_on:
