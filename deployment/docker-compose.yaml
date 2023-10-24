@@ -54,10 +54,8 @@ services:
       KAFKA_BOOTSTRAP_SERVERS: kafka:9092
 
   storage:
-    image: storage:latest
-    command: /usr/src/app/startup.sh
-    volumes:
-      - ./startup.sh:/usr/src/app/startup.sh
+    #image: storage:latest
+    build: .
     ports:
       - "8090:8090"
     depends_on:
