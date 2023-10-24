@@ -55,7 +55,7 @@ services:
 
   storage:
     image: storage:latest
-    command: /bin/bash /usr/src/app/startup.sh
+    command: /usr/src/app/startup.sh
     volumes:
       - ./startup.sh:/usr/src/app/startup.sh
     ports:
