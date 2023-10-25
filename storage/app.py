@@ -77,7 +77,6 @@ def get_schedule(timestamp):
         return results_list, 200
 def process_messages():
         """ Process event messages """
-        os.system("/app/wait-for-it.sh kafka:9092 -t 60 --")
         hostname = "%s:%d" % (app_config["events"]["hostname"],app_config["events"]["port"]) 
         client = KafkaClient(hosts=hostname)
         topic = client.topics[str.encode(app_config["events"]["topic"])]

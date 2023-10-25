@@ -13,10 +13,6 @@ RUN pip3 install -r requirements.txt
 
 COPY . /app
 
-RUN apt-get install -y curl && \
-    curl -LJO https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.sh && \
-    chmod +x wait-for-it.sh
-
 ENTRYPOINT [ "python3" ]
 
 CMD [ "app.py" ]
