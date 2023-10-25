@@ -13,13 +13,6 @@ RUN pip3 install -r requirements.txt
 
 COPY . /app
 
-#ENTRYPOINT [ "python3" ]
+ENTRYPOINT [ "python3" ]
 
-#CMD [ "app.py" ]
-
-# Set execute permissions for start.sh
-COPY start.sh /app/start.sh
-RUN chmod +x /app/start.sh
-
-# Use start.sh as entry point
-ENTRYPOINT ["/app/start.sh"]
+CMD [ "app.py" ]
