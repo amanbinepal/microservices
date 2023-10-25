@@ -54,7 +54,10 @@ services:
       KAFKA_BOOTSTRAP_SERVERS: kafka:9092
 
   storage:
-    image: storage:latest
+    #image: storage:latest
+    build:
+      context: ../storage
+      dockerfile: Dockerfile
     ports:
       - "8090:8090"
     depends_on:
@@ -66,7 +69,6 @@ services:
       MYSQL_USER: user
       MYSQL_PASSWORD: password
       MYSQL_DATABASE: carbookings
-    command: bash -c "sleep 30 && python3 app.py"
 
   processing:
     image: processing:latest
