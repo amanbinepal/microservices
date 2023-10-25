@@ -63,7 +63,7 @@ services:
     environment:
       KAFKA_BOOTSTRAP_SERVERS: kafka:9092
       MYSQL_HOST: db
-      MYSQL_USER: user
+      MYSQL_USER: root
       MYSQL_PASSWORD: password
       MYSQL_DATABASE: carbookings
 
