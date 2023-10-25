@@ -78,40 +78,35 @@ def get_schedule(timestamp):
         return results_list, 200
 def process_messages():
         """ Process event messages """
-        while True:
-                try:
-                        hostname = "%s:%d" % (app_config["events"]["hostname"],app_config["events"]["port"]) 
-                        client = KafkaClient(hosts=hostname)
-                        topic = client.topics[str.encode(app_config["events"]["topic"])]
-                        consumer = topic.get_simple_consumer(consumer_group=b'event_group',reset_offset_on_start=False,auto_offset_reset=OffsetType.LATEST)
-                        for msg in consumer:
-                                msg_str = msg.value.decode('utf-8')
-                                msg = json.loads(msg_str)
-                                payload = msg["payload"]
-                                if msg["type"] == "car_choice":
-                                        #logger.info("Received car choice request event with a unique id of %s" % msg["id"])
-                                        session = DB_SESSION()
-                                        car_choice = CarChoice(payload['car_id'], payload['type'], payload['passenger_capacity'], payload['year'], payload['make'], payload['model'], payload['trace_id'])
-                                        session.add(car_choice)
-                                        session.commit()
-                                        session.close()
-                                        logger.debug(f"Stored car choice with a trace id of {payload['trace_id']}")
-                                elif msg["type"] == "schedule_choice":
-                                        #logger.info("Received schedule choice request event with a unique id of %s" % msg["id"])
-                                        session = DB_SESSION()
-                                        schedule_choice = ScheduleChoice(payload['sched_id'],payload['location'], payload['start_time'], payload['days'], payload['est_kms'], payload['end_time'], payload['trace_id'])
-                                        session.add(schedule_choice)
-                                        session.commit()
-                                        session.close()
-                                        logger.debug(f"Stored schedule choice with a trace id of {payload['trace_id']}")
-                                        
-                                else:
-                                        logger.error("Received event with unknown type")
-                                consumer.commit_offsets()
-                        logger.warn("Shutdown of consumer thread complete")
-                except pykafka.exceptions.NoBrokersAvailableError:
-                        logger.warn("Unable to connect to Kafka broker. Retrying connection in 5 seconds")
-                        time.sleep(5)
+        hostname = "%s:%d" % (app_config["events"]["hostname"],app_config["events"]["port"]) 
+        client = KafkaClient(hosts=hostname)
+        topic = client.topics[str.encode(app_config["events"]["topic"])]
+        consumer = topic.get_simple_consumer(consumer_group=b'event_group',reset_offset_on_start=False,auto_offset_reset=OffsetType.LATEST)
+        for msg in consumer:
+                msg_str = msg.value.decode('utf-8')
+                msg = json.loads(msg_str)
+                payload = msg["payload"]
+                if msg["type"] == "car_choice":
+                        #logger.info("Received car choice request event with a unique id of %s" % msg["id"])
+                        session = DB_SESSION()
+                        car_choice = CarChoice(payload['car_id'], payload['type'], payload['passenger_capacity'], payload['year'], payload['make'], payload['model'], payload['trace_id'])
+                        session.add(car_choice)
+                        session.commit()
+                        session.close()
+                        logger.debug(f"Stored car choice with a trace id of {payload['trace_id']}")
+                elif msg["type"] == "schedule_choice":
+                        #logger.info("Received schedule choice request event with a unique id of %s" % msg["id"])
+                        session = DB_SESSION()
+                        schedule_choice = ScheduleChoice(payload['sched_id'],payload['location'], payload['start_time'], payload['days'], payload['est_kms'], payload['end_time'], payload['trace_id'])
+                        session.add(schedule_choice)
+                        session.commit()
+                        session.close()
+                        logger.debug(f"Stored schedule choice with a trace id of {payload['trace_id']}")
+                        
+                else:
+                        logger.error("Received event with unknown type")
+                consumer.commit_offsets()
+        logger.warn("Shutdown of consumer thread complete")
 
 
 app = connexion.FlaskApp(__name__, specification_dir='')
