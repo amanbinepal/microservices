@@ -66,6 +66,7 @@ services:
       MYSQL_USER: user
       MYSQL_PASSWORD: password
       MYSQL_DATABASE: carbookings
+    command: bash -c "sleep 30 && python3 app.py"
 
   processing:
     image: processing:latest
