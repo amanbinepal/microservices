@@ -77,7 +77,7 @@ def populate_stats():
                 stats['num_schedule_choices'] += total_schedule_choices
                 stats['max_est_kms'] = max(stats['max_est_kms'], max_est_kms)
                 stats['max_days_scheduled'] = max(stats['max_days_scheduled'], max_days_scheduled)
-                stats['last_updated'] = current_time
+                #stats['last_updated'] = current_time
 
                 # updated_stats = {
                 #         "num_car_selections": len(car_select_events),
