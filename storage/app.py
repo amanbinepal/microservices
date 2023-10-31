@@ -70,9 +70,9 @@ def get_schedule(timestamp):
         timestamp_datetime = datetime.datetime.strptime(timestamp, "%Y-%m-%dT%H:%M:%SZ")
         schedule_choices = session.query(ScheduleChoice).filter(ScheduleChoice.date_created >= timestamp_datetime)
         results_list = []
-        print(schedule_choices)
+        #print(schedule_choices)
         for schedule_choice in schedule_choices:
-                print(schedule_choice)
+                #print(schedule_choice)
                 results_list.append(schedule_choice.to_dict())
         session.close()
         logger.info(f"Query for schedule choices after {timestamp} returns {len(results_list)} results")
