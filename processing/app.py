@@ -36,11 +36,13 @@ def populate_stats():
                 "max_est_kms": 0,
                 "num_schedule_choices": 0,
                 "max_days_scheduled": 0,
-                "last_updated": ""
+                "last_updated": datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ")
                 }
                with open(app_config['datastore']['filename'], 'w') as file:
                           json.dump(stats, file)
-        current_time = datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ")
+
+        current_time = stats['last_updated']
+        #current_time = datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ")
         #print(app_config['eventstore1']['url'])
         #print(app_config['eventstore2']['url'])
 
@@ -48,6 +50,7 @@ def populate_stats():
         response_schedule_choice = requests.get(app_config['eventstore2']['url'], params={'timestamp': current_time})
         #print(response_car_select)
         #print(response_schedule_choice)
+        stats['last_updated'] = datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ")
 
 
         if response_car_select.status_code == 200 and response_schedule_choice.status_code == 200:

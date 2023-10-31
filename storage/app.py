@@ -72,6 +72,7 @@ def get_schedule(timestamp):
         results_list = []
         print(schedule_choices)
         for schedule_choice in schedule_choices:
+                print(schedule_choice)
                 results_list.append(schedule_choice.to_dict())
         session.close()
         logger.info(f"Query for schedule choices after {timestamp} returns {len(results_list)} results")
