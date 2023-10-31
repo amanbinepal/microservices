@@ -17,6 +17,7 @@ from pykafka.common import OffsetType
 from threading import Thread
 import time
 import pykafka
+#from flask_cors import CORS, cross_origin
 
 with open('app_conf.yaml', 'r') as f:
         app_config = yaml.safe_load(f.read())
@@ -114,6 +115,8 @@ def process_messages():
 
 
 app = connexion.FlaskApp(__name__, specification_dir='')
+#CORS(app.app)
+#app.app.config['CORS_HEADERS'] = 'Content-Type'
 app.add_api("BINEPAL2003-CarRequests-1.0.0-swagger.yaml",
         strict_validation=True,
         validate_responses=True)

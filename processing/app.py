@@ -14,6 +14,7 @@ import logging
 from apscheduler.schedulers.background import BackgroundScheduler
 import uuid
 import requests
+from flask_cors import CORS, cross_origin
 
 with open('app_conf.yaml', 'r') as f:
         app_config = yaml.safe_load(f.read())
@@ -117,6 +118,8 @@ def get_stats():
 
 
 app = connexion.FlaskApp(__name__, specification_dir='')
+CORS(app.app)
+app.app.config['CORS_HEADERS'] = 'Content-Type'
 app.add_api("BINEPAL2003-CarRequests-1.0.0-swagger.yaml",
         strict_validation=True,
         validate_responses=True)
