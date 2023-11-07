@@ -41,9 +41,16 @@ paths:
       operationId: app.get_car
       description: Gets the car selection of the driver
       parameters:
-        - name: timestamp
+        - name: start_timestamp
           in: query
-          description: Limits the number of items on a page
+          description: Starting point for time
+          schema:
+            type: string
+            format: date-time
+            example: '2016-08-29T09:12:33.001Z'
+        - name: end_timestamp
+          in: query
+          description: Ending point for time
           schema:
             type: string
             format: date-time
@@ -94,9 +101,16 @@ paths:
       operationId: app.get_schedule
       description: Gets the schedule of the driver
       parameters:
-        - name: timestamp
+        - name: start_timestamp
           in: query
-          description: Limits the number of items on a page
+          description: Starting point for time
+          schema:
+            type: string
+            format: date-time
+            example: '2016-08-29T09:12:33.001Z'
+        - name: end_timestamp
+          in: query
+          description: Ending point for time
           schema:
             type: string
             format: date-time
