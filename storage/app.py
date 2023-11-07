@@ -95,8 +95,9 @@ def process_messages():
                         client = KafkaClient(hosts=hostname)
                         topic = client.topics[str.encode(app_config["events"]["topic"])]
                         consumer = topic.get_simple_consumer(consumer_group=b'event_group',reset_offset_on_start=False,auto_offset_reset=OffsetType.LATEST)
+                        logger.info("Successfully connected to kafka")
                         break
-                except Exception as e:
+                except:
                         logger.error(f"Unable to connect to kafka, retrying in {retry_wait} seconds")
                         time.sleep(retry_wait)
                         retry_count += 1
