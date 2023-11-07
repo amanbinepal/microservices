@@ -18,6 +18,7 @@ from threading import Thread
 import time
 import pykafka
 #from flask_cors import CORS, cross_origin
+from sqlalchemy import and_
 
 with open('app_conf.yaml', 'r') as f:
         app_config = yaml.safe_load(f.read())
@@ -52,31 +53,33 @@ with open('log_conf.yaml', 'r') as f:
 #     logger.debug(f"Stored schedule choice with a trace id of {body['trace_id']}")
 #     return NoContent, 201
 
-def get_car(timestamp):
+def get_car(start_timestamp, end_timestamp):
         """ Gets the car choice for the user """
         session = DB_SESSION()
-        timestamp_datetime = datetime.datetime.strptime(timestamp, "%Y-%m-%dT%H:%M:%SZ")
-        car_choices = session.query(CarChoice).filter(CarChoice.date_created >= timestamp_datetime)
+        start_timestamp_datetime = datetime.datetime.strptime(start_timestamp, "%Y-%m-%dT%H:%M:%SZ")
+        end_timestamp_datetime = datetime.datetime.strptime(end_timestamp, "%Y-%m-%dT%H:%M:%SZ")
+        car_choices = session.query(CarChoice).filter(and_(CarChoice.date_created >= start_timestamp_datetime), (CarChoice.date_created < end_timestamp_datetime))
         results_list = []
         for car_choice in car_choices:
                 results_list.append(car_choice.to_dict())
         session.close()
-        logger.info(f"Query for car choices after {timestamp} returns {len(results_list)} results")
+        logger.info(f"Query for car choices for start time {start_timestamp} returns {len(results_list)} results")
         logger.info(results_list)
         return results_list, 200
 
-def get_schedule(timestamp):
+def get_schedule(start_timestamp, end_timestamp):
         """ Gets the schedule choice for the user """
         session = DB_SESSION()
-        timestamp_datetime = datetime.datetime.strptime(timestamp, "%Y-%m-%dT%H:%M:%SZ")
-        schedule_choices = session.query(ScheduleChoice).filter(ScheduleChoice.date_created >= timestamp_datetime)
+        start_timestamp_datetime = datetime.datetime.strptime(start_timestamp, "%Y-%m-%dT%H:%M:%SZ")
+        end_timestamp_datetime = datetime.datetime.strptime(end_timestamp, "%Y-%m-%dT%H:%M:%SZ")
+        schedule_choices = session.query(ScheduleChoice).filter(and_(ScheduleChoice.date_created >= start_timestamp_datetime, ScheduleChoice.date_created < end_timestamp_datetime))
         results_list = []
         #print(schedule_choices)
         for schedule_choice in schedule_choices:
                 #print(schedule_choice)
                 results_list.append(schedule_choice.to_dict())
         session.close()
-        logger.info(f"Query for schedule choices after {timestamp} returns {len(results_list)} results")
+        logger.info(f"Query for schedule choices after {start_timestamp} returns {len(results_list)} results")
         logger.info(results_list)
         return results_list, 200
 def process_messages():
