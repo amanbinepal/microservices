@@ -84,9 +84,27 @@ def get_schedule(start_timestamp, end_timestamp):
         return results_list, 200
 def process_messages():
         """ Process event messages """
+        max_retries = app_config["kafka"]["max_retries"]
+        retry_wait = app_config["kafka"]["retry_wait"]
         hostname = "%s:%d" % (app_config["events"]["hostname"],app_config["events"]["port"]) 
-        client = KafkaClient(hosts=hostname)
-        topic = client.topics[str.encode(app_config["events"]["topic"])]
+        retry_count = 0
+        client = None
+        while retry_count < max_retries:
+                try:
+                        logger.info("Trying to connect to kafka")
+                        client = KafkaClient(hosts=hostname)
+                        topic = client.topics[str.encode(app_config["events"]["topic"])]
+                        consumer = topic.get_simple_consumer(consumer_group=b'event_group',reset_offset_on_start=False,auto_offset_reset=OffsetType.LATEST)
+                        break
+                except Exception as e:
+                        logger.error(f"Unable to connect to kafka, retrying in {retry_wait} seconds")
+                        time.sleep(retry_wait)
+                        retry_count += 1
+        if client is None:
+                logger.error(f"Unable to connect to kafka after {max_retries} retries")
+                return
+        #client = KafkaClient(hosts=hostname)
+        #topic = client.topics[str.encode(app_config["events"]["topic"])]
         consumer = topic.get_simple_consumer(consumer_group=b'event_group',reset_offset_on_start=False,auto_offset_reset=OffsetType.LATEST)
         session = DB_SESSION()
         for msg in consumer:

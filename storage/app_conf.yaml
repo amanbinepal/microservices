@@ -9,3 +9,6 @@ events:
   hostname: aman3855.eastus2.cloudapp.azure.com
   port: 9092
   topic: events
+kafka:
+  max_retries: 5
+  retry_wait: 3
