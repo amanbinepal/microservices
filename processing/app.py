@@ -47,8 +47,8 @@ def populate_stats():
         #print(app_config['eventstore1']['url'])
         #print(app_config['eventstore2']['url'])
 
-        response_car_select = requests.get(app_config['eventstore1']['url'] + "/cars/selection", params={'start_timestamp': current_time, 'end_timestamp': current_timestamp})
-        response_schedule_choice = requests.get(app_config['eventstore2']['url'] + "/cars/schedule", params={'start_timestamp': current_time, 'end_timestamp': current_timestamp})
+        response_car_select = requests.get(app_config['eventstore1']['url'], params={'start_timestamp': current_time, 'end_timestamp': current_timestamp})
+        response_schedule_choice = requests.get(app_config['eventstore2']['url'], params={'start_timestamp': current_time, 'end_timestamp': current_timestamp})
         #print(response_car_select)
         #print(response_schedule_choice)
         #stats['last_updated'] = datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ")
