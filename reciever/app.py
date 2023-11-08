@@ -9,6 +9,8 @@ import logging.config
 import logging
 import uuid
 from pykafka import KafkaClient
+from pykafka.exceptions import KafkaException
+import time
 #from flask_cors import CORS, cross_origin
 
 with open('log_conf.yaml', 'r') as f:
@@ -19,16 +21,36 @@ logger = logging.getLogger('basicLogger')
 with open('app_conf.yaml', 'r') as f:
         app_config = yaml.safe_load(f.read())
 
+def kafka_init():
+        max_retries = app_config['kafka']['max_retries']
+        retry_wait = app_config['kafka']['retry_wait']
+        retry_count = 0
+        while retry_count < max_retries:
+                try:
+                        logger.info("Trying to connect to Kafka")
+                        client = KafkaClient(hosts=f"{app_config['events']['hostname']}:{app_config['events']['port']}")
+                        logger.info("Successfully connected to Kafka")
+                        return client
+                except KafkaException:
+                        logger.error(f"Unable to connect to Kafka, retrying in {retry_wait} seconds")
+                        time.sleep(retry_wait)
+                        retry_count += 1
+        raise Exception("Maximum retries reached. Failed to connect to Kafka")
+
+kafka_client = kafka_init()
+topic = kafka_client.topics[str.encode(app_config['events']['topic'])]
+producer = topic.get_sync_producer()
+
 def select_car(body):
     """ Selects car for the user """
     trace_id = uuid.uuid4()
     body['trace_id'] = str(trace_id)
     logger.info(f'Recieved event car_choice request with a trace_id of {str(trace_id)}')
-    headers = {'Content-Type': 'application/json'}
+    #headers = {'Content-Type': 'application/json'}
 
-    client = KafkaClient(hosts=f"{app_config['events']['hostname']}:{app_config['events']['port']}")
-    topic = client.topics[str.encode(app_config['events']['topic'])]
-    producer = topic.get_sync_producer()
+    #client = KafkaClient(hosts=f"{app_config['events']['hostname']}:{app_config['events']['port']}")
+    #topic = client.topics[str.encode(app_config['events']['topic'])]
+    #producer = topic.get_sync_producer()
     msg = {
        "type": "car_choice",
        "datetime": datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S"),
@@ -51,11 +73,11 @@ def select_time(body):
     trace_id = uuid.uuid4()
     body['trace_id'] = str(trace_id)
     logger.info(f'Recieved event time_choice request with a trace_id of {str(trace_id)}')
-    headers = {'Content-Type': 'application/json'}
+    #headers = {'Content-Type': 'application/json'}
 
-    client = KafkaClient(hosts=f"{app_config['events']['hostname']}:{app_config['events']['port']}")
-    topic = client.topics[str.encode(app_config['events']['topic'])]
-    producer = topic.get_sync_producer()
+    #client = KafkaClient(hosts=f"{app_config['events']['hostname']}:{app_config['events']['port']}")
+    #topic = client.topics[str.encode(app_config['events']['topic'])]
+    #producer = topic.get_sync_producer()
     msg = {
        "type": "schedule_choice",
        "datetime": datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S"),
