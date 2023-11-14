@@ -20,18 +20,37 @@ import pykafka
 #from flask_cors import CORS, cross_origin
 from sqlalchemy import and_
 
+if "TARGET_ENV" in os.environ and os.environ["TARGET_ENV"] == "test":
+    print("In Test Environment")
+    app_conf_file = "/config/app_conf.yml"
+    log_conf_file = "/config/log_conf.yml"
+else:
+    print("In Dev Environment")
+    app_conf_file = "app_conf.yml"
+    log_conf_file = "log_conf.yml"
+
 with open('app_conf.yaml', 'r') as f:
         app_config = yaml.safe_load(f.read())
 
-DB_ENGINE = create_engine(f"mysql+pymysql://{app_config['datastore']['user']}:{app_config['datastore']['password']}@{app_config['datastore']['hostname']}:{app_config['datastore']['port']}/{app_config['datastore']['db']}")
-logger = logging.getLogger('basicLogger')
-logger.info(f"Connected to MySQL database at {app_config['datastore']['hostname']}:{app_config['datastore']['port']}")
-Base.metadata.bind = DB_ENGINE
-DB_SESSION = sessionmaker(bind=DB_ENGINE)
 
 with open('log_conf.yaml', 'r') as f:
         log_config = yaml.safe_load(f.read())
         logging.config.dictConfig(log_config)
+
+logger = logging.getLogger('basicLogger')
+
+logger.info("App Conf File: %s" % app_conf_file)
+logger.info("Log Conf File: %s" % log_conf_file)
+
+DB_ENGINE = create_engine(f"mysql+pymysql://{app_config['datastore']['user']}:{app_config['datastore']['password']}@{app_config['datastore']['hostname']}:{app_config['datastore']['port']}/{app_config['datastore']['db']}")
+#logger = logging.getLogger('basicLogger')
+logger.info(f"Connected to MySQL database at {app_config['datastore']['hostname']}:{app_config['datastore']['port']}")
+Base.metadata.bind = DB_ENGINE
+DB_SESSION = sessionmaker(bind=DB_ENGINE)
+
+#with open('log_conf.yaml', 'r') as f:
+#        log_config = yaml.safe_load(f.read())
+#        logging.config.dictConfig(log_config)
 
 # def select_car(body):
 #     """ Selects car for the user """
