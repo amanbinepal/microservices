@@ -57,6 +57,9 @@ services:
       - kafka
     environment:
       KAFKA_BOOTSTRAP_SERVERS: kafka:9092
+      TARGET_ENV: test
+    volumes:
+      - /home/azureuser/config/receiver:/config
 
   storage:
     image: storage:latest
@@ -71,6 +74,9 @@ services:
       MYSQL_USER: user
       MYSQL_PASSWORD: password
       MYSQL_DATABASE: carbookings
+      TARGET_ENV: test
+    volumes:
+      - /home/azureuser/config/storage:/config
 
   processing:
     image: processing:latest
@@ -81,6 +87,9 @@ services:
       - storage
     environment:
       STORAGE_URL: http://localhost:8090
+      TARGET_ENV: test
+    volumes:
+      - /home/azureuser/config/processing:/config
 
   audit_log:
     image: audit_log:latest
@@ -90,6 +99,9 @@ services:
       - kafka
     environment:
       KAFKA_BOOTSTRAP_SERVERS: kafka:9092
+      TARGET_ENV: test
+    volumes:
+      - /home/azureuser/config/audit_log:/config
       
   dashboard:
     image: dashboard
