@@ -29,17 +29,19 @@ def kafka_init():
                 try:
                         logger.info("Trying to connect to Kafka")
                         client = KafkaClient(hosts=f"{app_config['events']['hostname']}:{app_config['events']['port']}")
+                        topic = client.topics[str.encode(app_config['events']['topic'])]
+                        producer = topic.get_sync_producer()
                         logger.info("Successfully connected to Kafka")
-                        return client
+                        return client,producer
                 except KafkaException:
                         logger.error(f"Unable to connect to Kafka, retrying in {retry_wait} seconds")
                         time.sleep(retry_wait)
                         retry_count += 1
         raise Exception("Maximum retries reached. Failed to connect to Kafka")
 
-kafka_client = kafka_init()
-topic = kafka_client.topics[str.encode(app_config['events']['topic'])]
-producer = topic.get_sync_producer()
+kafka_client,producer = kafka_init()
+#topic = kafka_client.topics[str.encode(app_config['events']['topic'])]
+#producer = topic.get_sync_producer()
 
 def select_car(body):
     """ Selects car for the user """
