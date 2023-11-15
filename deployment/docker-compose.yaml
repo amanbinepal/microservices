@@ -60,6 +60,7 @@ services:
       TARGET_ENV: test
     volumes:
       - /home/azureuser/config/receiver:/config
+      - /home/azureuser/logs:/logs
 
   storage:
     image: storage:latest
@@ -77,6 +78,7 @@ services:
       TARGET_ENV: test
     volumes:
       - /home/azureuser/config/storage:/config
+      - /home/azureuser/logs:/logs
 
   processing:
     image: processing:latest
@@ -90,6 +92,7 @@ services:
       TARGET_ENV: test
     volumes:
       - /home/azureuser/config/processing:/config
+      - /home/azureuser/logs:/logs
 
   audit_log:
     image: audit_log:latest
@@ -102,6 +105,7 @@ services:
       TARGET_ENV: test
     volumes:
       - /home/azureuser/config/audit_log:/config
+      - /home/azureuser/logs:/logs
       
   dashboard:
     image: dashboard
