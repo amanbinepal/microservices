@@ -24,6 +24,10 @@ from flask_cors import CORS, cross_origin
 #         logging.config.dictConfig(log_config)
 # logger = logging.getLogger('basicLogger')
 
+def health_check():
+    """ Health Check Endpoint """
+    return '', 200
+
 if "TARGET_ENV" in os.environ and os.environ["TARGET_ENV"] == "test":
     print("In Test Environment")
     app_conf_file = "/config/app_conf.yaml"

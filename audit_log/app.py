@@ -20,6 +20,9 @@ import os
 
 # logger = logging.getLogger('basicLogger')
 
+def health_check():
+    """ Health Check Endpoint """
+    return '', 200
 
 if "TARGET_ENV" in os.environ and os.environ["TARGET_ENV"] == "test":
     print("In Test Environment")

@@ -133,6 +133,16 @@ paths:
                 properties:
                   message:
                     type: string
+
+  /health:
+    get:
+      summary: Health Check Endpoint
+      description: Returns a 200 status code if the service is running.
+      operationId: app.health_check
+      responses:
+        200:
+          description: Service is running
+          
 components:
   schemas:
     CarChoice:

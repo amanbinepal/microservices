@@ -13,6 +13,10 @@ from pykafka.exceptions import KafkaException
 import time
 #from flask_cors import CORS, cross_origin
 
+def health_check():
+    """ Health Check Endpoint """
+    return '', 200
+
 if "TARGET_ENV" in os.environ and os.environ["TARGET_ENV"] == "test":
     print("In Test Environment")
     app_conf_file = "/config/app_conf.yaml"
