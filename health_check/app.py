@@ -7,6 +7,7 @@ import time
 from threading import Thread
 from flask_cors import CORS
 import connexion
+from apscheduler.schedulers.background import BackgroundScheduler
 
 if "TARGET_ENV" in os.environ and os.environ["TARGET_ENV"] == "test":
     print("In Test Environment")
@@ -37,14 +38,23 @@ def check_health(url):
 
 
 def update_services_status():
-    while True:
-        logger.info("Updating service statuses")
-        for service, url in app_config['services'].items():
-            status = check_health(url)
-            services_status[service] = status
-            logger.info(f"Status of {service}: {status}")
-        services_status["last_updated"] = time.strftime("%Y-%m-%dT%H:%M:%S")
-        time.sleep(20)
+    #while True:
+    logger.info("Updating service statuses")
+    for service, url in app_config['services'].items():
+        status = check_health(url)
+        services_status[service] = status
+        logger.info(f"Status of {service}: {status}")
+    services_status["last_updated"] = time.strftime("%Y-%m-%dT%H:%M:%S")
+        #time.sleep(app_config['scheduler']['period_sec'])
+
+def init_scheduler():
+    scheduler = BackgroundScheduler(daemon=True)
+    scheduler.add_job(
+        update_services_status,
+        'interval',
+        seconds=app_config['scheduler']['period_sec']
+    )
+    scheduler.start()
 
 def get_status():
     """ Get Status of All Services """
@@ -69,4 +79,5 @@ app.add_api('openapi.yaml',
             validate_responses=True)
 
 if __name__ == '__main__':
+    init_scheduler()
     app.run(port=8120)

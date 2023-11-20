@@ -4,3 +4,5 @@ services:
   storage: http://aman3855.eastus2.cloudapp.azure.com:8090/health
   receiver: http://aman3855.eastus2.cloudapp.azure.com:8080/health
 polling_interval: 20
+scheduler:
+  period_sec: 20
