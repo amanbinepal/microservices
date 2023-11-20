@@ -1,0 +1,32 @@
+openapi: 3.0.0
+info:
+description: API for checking the health of services
+  version: 1.0.0
+  title: Health Check API
+  contact:
+    email: abinepal@my.bcit.ca
+paths:
+  /status:
+    get:
+      summary: Get status of all services
+      description: Returns status of all services.
+      operationId: app.get_status
+      responses:
+        200:
+          description: Successfully gets the status of services
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  receiver:
+                    type: string
+                  storage:
+                    type: string
+                  processing:
+                    type: string
+                  audit:
+                    type: string
+                  last_update:
+                    type: string
+                    format: date-time
