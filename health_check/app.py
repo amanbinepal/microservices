@@ -55,7 +55,7 @@ services_status = {
     "receiver": "Down",
     "storage": "Down",
     "processing": "Down",
-    "audit": "Down",
+    "audit_log": "Down",
     "last_updated": None
 }
 
