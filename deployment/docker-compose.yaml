@@ -116,6 +116,22 @@ services:
       - "processing"
       - "audit_log"
 
+  health_check:
+    image: health_check:latest
+    ports:
+      - "8120:8120"
+    depends_on:
+      - receiver
+      - storage
+      - processing
+      - audit_log
+    environment:
+      TARGET_ENV: test
+    volumes:
+      - /home/azureuser/config/health_check:/config
+      - /home/azureuser/logs:/logs
+
+
 # Names our volume
 volumes:
   my-db:
