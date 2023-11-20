@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-description: API for checking the health of services
+  description: API for checking the health of services
   version: 1.0.0
   title: Health Check API
   contact:
