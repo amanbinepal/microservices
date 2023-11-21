@@ -59,6 +59,7 @@ def init_scheduler():
 
 def get_status():
     """ Get Status of All Services """
+    update_services_status() #temp
     logger.info("Health status of all services retrieved")
     return services_status
 
@@ -80,6 +81,6 @@ app.add_api('openapi.yaml',
             validate_responses=True)
 
 if __name__ == '__main__':
-    update_services_status()
+    #update_services_status()
     init_scheduler()
     app.run(port=8120)
