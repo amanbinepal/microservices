@@ -69,7 +69,7 @@ services_status = {
     "last_updated": None
 }
 
-Thread(target=update_services_status, daemon=True).start()
+#Thread(target=update_services_status, daemon=True).start()
 
 app = connexion.FlaskApp(__name__, specification_dir='')
 CORS(app.app)
