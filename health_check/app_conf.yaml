@@ -1,8 +1,8 @@
 services:
-  audit_log: http://aman3855.eastus2.cloudapp.azure.com:8110/health
-  processing: http://aman3855.eastus2.cloudapp.azure.com:8100/health
-  storage: http://aman3855.eastus2.cloudapp.azure.com:8090/health
-  receiver: http://aman3855.eastus2.cloudapp.azure.com:8080/health
+  audit_log: http://aman3855.eastus2.cloudapp.azure.com/audit_log/health
+  processing: http://aman3855.eastus2.cloudapp.azure.com/processing/health
+  storage: http://aman3855.eastus2.cloudapp.azure.com/storage/health
+  receiver: http://aman3855.eastus2.cloudapp.azure.com/receiver/health
 polling_interval: 20
 scheduler:
   period_sec: 20
