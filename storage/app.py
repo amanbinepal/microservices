@@ -163,6 +163,7 @@ app = connexion.FlaskApp(__name__, specification_dir='')
 #CORS(app.app)
 #app.app.config['CORS_HEADERS'] = 'Content-Type'
 app.add_api("BINEPAL2003-CarRequests-1.0.0-swagger.yaml",
+        base_path="/storage",
         strict_validation=True,
         validate_responses=True)
 if __name__ == "__main__":

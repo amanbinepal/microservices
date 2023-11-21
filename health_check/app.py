@@ -59,9 +59,9 @@ def init_scheduler():
 
 def get_status():
     """ Get Status of All Services """
-    update_services_status() #temp
+    #update_services_status() #temp commented out, uncomment to revert
     logger.info("Health status of all services retrieved")
-    return services_status
+    return services_status, 200 #added 200, remove to revert
 
 services_status = {
     "receiver": "Down",
