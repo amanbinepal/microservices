@@ -27,6 +27,7 @@ export default function AppStats() {
             .then(
                 (result) => {
                     setServiceStatus(result);
+                    console.log(result)
                 },
                 (error) => {
                     setError(error);
