@@ -8,6 +8,7 @@ from threading import Thread
 from flask_cors import CORS
 import connexion
 from apscheduler.schedulers.background import BackgroundScheduler
+from datetime import datetime
 
 if "TARGET_ENV" in os.environ and os.environ["TARGET_ENV"] == "test":
     print("In Test Environment")
@@ -66,7 +67,7 @@ services_status = {
     "storage": "Down",
     "processing": "Down",
     "audit_log": "Down",
-    "last_updated": None
+    "last_updated": datetime.now().strftime("%Y-%m-%dT%H:%M:%S")
 }
 
 #Thread(target=update_services_status, daemon=True).start()
