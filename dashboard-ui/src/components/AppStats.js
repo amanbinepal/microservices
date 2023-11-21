@@ -9,7 +9,7 @@ export default function AppStats() {
 
 	const getStats = () => {
 	
-        fetch(`http://aman3855.eastus2.cloudapp.azure.com:8100/stats`)
+        fetch(`http://aman3855.eastus2.cloudapp.azure.com/processing/stats`)
             .then(res => res.json())
             .then((result)=>{
 				console.log("Received Stats")
