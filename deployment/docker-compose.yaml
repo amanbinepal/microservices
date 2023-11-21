@@ -52,7 +52,9 @@ services:
   receiver:
     image: receiver:latest
     ports:
-      - "8080:8080"
+      - "8080"
+    networks:
+      - api.network
     depends_on:
       - kafka
     environment:
@@ -65,7 +67,9 @@ services:
   storage:
     image: storage:latest
     ports:
-      - "8090:8090"
+      - "8090"
+    networks:
+      - api.network
     depends_on:
       - kafka
       - db
@@ -83,8 +87,9 @@ services:
   processing:
     image: processing:latest
     ports:
-      - "8100:8100"
-    network_mode: "host"
+      - "8100"
+    networks:
+      - api.network
     depends_on:
       - storage
     environment:
@@ -98,7 +103,9 @@ services:
   audit_log:
     image: audit_log:latest
     ports:
-      - "8110:8110"
+      - "8110"
+    networks:
+      - api.network
     depends_on:
       - kafka
     environment:
@@ -111,7 +118,9 @@ services:
   dashboard:
     image: dashboard
     ports:
-      - "3000:3000"
+      - "3000"
+    networks:
+      - api.network
     depends_on:
       - "processing"
       - "audit_log"
@@ -136,3 +145,5 @@ services:
 volumes:
   my-db:
   processing-db:
+networks:
+  api.network:
