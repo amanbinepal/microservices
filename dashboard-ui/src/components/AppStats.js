@@ -4,6 +4,7 @@ import '../App.css';
 export default function AppStats() {
     const [isLoaded, setIsLoaded] = useState(false);
     const [stats, setStats] = useState({});
+    const [serviceStatus, setServiceStatus] = useState({});
     const [error, setError] = useState(null)
 
 	const getStats = () => {
@@ -19,9 +20,28 @@ export default function AppStats() {
                 setIsLoaded(true);
             })
     }
+
+    const fetchStatus = () => {
+        fetch('http://aman3855.eastus2.cloudapp.azure.com:8120/status')
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    setServiceStatus(result);
+                },
+                (error) => {
+                    setError(error);
+                }
+            )
+    }
+
+
     useEffect(() => {
 		const interval = setInterval(() => getStats(), 2000); // Update every 2 seconds
-		return() => clearInterval(interval);
+        const statusInterval = setInterval(() => fetchStatus(), 10000); // Update status every 10 seconds
+		return() => {
+            clearInterval(interval);
+            clearInterval(statusInterval);
+        }
     }, [getStats]);
 
     if (error){
@@ -53,6 +73,15 @@ export default function AppStats() {
 					</tbody>
                 </table>
                 <h3>Last Updated: {stats['last_updated']}</h3>
+
+                <h1>Health Check</h1>
+                <div className={"StatsTable"}>
+                    <h2>Service Status</h2>
+                    <p>Receiver: {serviceStatus.receiver}</p>
+                    <p>Storage: {serviceStatus.storage}</p>
+                    <p>Processing: {serviceStatus.processing}</p>
+                    <p>Audit: {serviceStatus.audit_log}</p>
+                </div>
 
             </div>
         )
