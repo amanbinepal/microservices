@@ -80,5 +80,6 @@ app.add_api('openapi.yaml',
             validate_responses=True)
 
 if __name__ == '__main__':
+    update_services_status()
     init_scheduler()
     app.run(port=8120)
