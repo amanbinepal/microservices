@@ -81,6 +81,7 @@ export default function AppStats() {
                     <p>Storage: {serviceStatus.storage}</p>
                     <p>Processing: {serviceStatus.processing}</p>
                     <p>Audit: {serviceStatus.audit_log}</p>
+                    <p>Last Updated: {serviceStatus.last_updated}</p>
                 </div>
 
             </div>
