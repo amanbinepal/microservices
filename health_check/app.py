@@ -28,6 +28,13 @@ with open(log_conf_file, 'r') as f:
 
 logger = logging.getLogger('basicLogger')
 
+services_status = {
+    "receiver": "Down",
+    "storage": "Down",
+    "processing": "Down",
+    "audit_log": "Down",
+    "last_updated": datetime.now().strftime("%Y-%m-%dT%H:%M:%S")
+}
 
 def check_health(url):
     try:
@@ -63,13 +70,13 @@ def get_status():
     logger.info("Health status of all services retrieved")
     return services_status, 200 #added 200, remove to revert
 
-services_status = {
-    "receiver": "Down",
-    "storage": "Down",
-    "processing": "Down",
-    "audit_log": "Down",
-    "last_updated": datetime.now().strftime("%Y-%m-%dT%H:%M:%S")
-}
+# services_status = {
+#     "receiver": "Down",
+#     "storage": "Down",
+#     "processing": "Down",
+#     "audit_log": "Down",
+#     "last_updated": datetime.now().strftime("%Y-%m-%dT%H:%M:%S")
+# }
 
 #Thread(target=update_services_status, daemon=True).start()
 
