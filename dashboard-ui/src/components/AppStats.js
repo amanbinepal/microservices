@@ -43,7 +43,7 @@ export default function AppStats() {
             clearInterval(interval);
             clearInterval(statusInterval);
         }
-    }, [getStats]);
+    }, [getStats, fetchStatus]);
 
     if (error){
         return (<div className={"error"}>Error found when fetching from API</div>)
