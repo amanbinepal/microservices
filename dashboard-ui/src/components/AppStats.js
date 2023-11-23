@@ -26,8 +26,9 @@ export default function AppStats() {
             .then(res => res.json())
             .then(
                 (result) => {
-                    setServiceStatus(result);
                     console.log(`Data test: ${result}`);
+                    setServiceStatus(result);
+                    //console.log(`Data test: ${result}`);
                 },
                 (error) => {
                     setError(error);
