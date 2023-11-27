@@ -72,6 +72,9 @@ export default function AppStats() {
 						<tr>
 							<td colspan="2">Audit: {stats['audit_log']}</td>
 						</tr>
+                        <tr>
+							<td colspan="2">Last Update: {stats['last_update_since']}</td>
+						</tr>
 					</tbody>
                 </table>
                 <h3>Last Updated: {stats['last_updated']}</h3>

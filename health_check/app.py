@@ -87,6 +87,10 @@ def get_status():
     logger.info("Health status of all services retrieved")
     with open('services_status.json', 'r') as json_file:
         current_status = json.load(json_file)
+
+    last_updated_time = datetime.strptime(current_status["last_updated"], "%Y-%m-%dT%H:%M:%S")
+    time_difference = (datetime.now() - last_updated_time).seconds
+    current_status["last_update_since"] = f"{time_difference} seconds ago"
     return current_status, 200 #added 200, remove to revert
     #return services_status, 200 #added 200, remove to revert
 
