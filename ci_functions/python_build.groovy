@@ -11,6 +11,7 @@ def call(dockerRepoName, imageName, portNum) {
 			stage('Build') {
 				steps {
                     dir("${dockerRepoName}") {
+                        sh 'ls -alh'
                         sh 'pip install -r requirements.txt --break-system-packages'
                         sh 'pip install --upgrade flask --break-system-packages'
                     }
