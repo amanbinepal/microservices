@@ -10,8 +10,8 @@ def call(dockerRepoName, imageName, portNum) {
 		stages {
 			stage('Build') {
 				steps {
-                    dir("${dockerRepoName}") {
-                        sh 'pip install -r ../requirements.txt --break-system-packages'
+                    dir('../') {
+                        sh 'pip install -r requirements.txt --break-system-packages'
                         sh 'pip install --upgrade flask --break-system-packages'
                     }
                 }
