@@ -10,9 +10,11 @@ def call(dockerRepoName, imageName, portNum) {
 		stages {
 			stage('Build') {
 				steps {
-                    echo "Current Directory: ${pwd()}"
-                    sh 'pip install -r requirements.txt --break-system-packages'
-                    sh 'pip install --upgrade flask --break-system-packages'
+					dir('audit_log') {
+						echo "Current Directory: ${pwd()}"
+						sh 'pip install -r requirements.txt --break-system-packages'
+						sh 'pip install --upgrade flask --break-system-packages'
+					}
                     
                 }
 			}
