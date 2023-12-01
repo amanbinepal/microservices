@@ -10,18 +10,13 @@ def call(dockerRepoName, imageName, portNum) {
 		stages {
 			stage('Build') {
 				steps {
-                    dir("${dockerRepoName}") {
-                        sh 'ls -alh'
-                        sh 'pip install -r requirements.txt --break-system-packages'
-                        sh 'pip install --upgrade flask --break-system-packages'
-                    }
+                    sh 'pip install -r ../requirements.txt --break-system-packages'
+                    sh 'pip install --upgrade flask --break-system-packages'
                 }
 			}
 			stage('Python Lint') {
 				steps {
-                    dir("${dockerRepoName}") {
-					    sh 'pylint --fail-under 5.0 *.py'
-                    }
+                    sh 'pylint --fail-under 5.0 *.py'
 				}
 			}
 			stage('Test and Coverage') {
