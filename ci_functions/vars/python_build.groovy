@@ -104,8 +104,11 @@ def call(dockerRepoName, imageName, portNum) {
 					expression { params.DEPLOY }
 				}
 				steps {
-					sh "docker stop ${dockerRepoName} || true && docker rm ${dockerRepoName} || true"
-					sh "docker run -d -p ${portNum}:${portNum} --name ${dockerRepoName} ${dockerRepoName}:latest"
+					dir('deployment') {
+						//sh "docker stop ${dockerRepoName} || true && docker rm ${dockerRepoName} || true"
+						//sh "docker run -d -p ${portNum}:${portNum} --name ${dockerRepoName} ${dockerRepoName}:latest"
+						sh "docker-compose up -d"
+					}
 				}
 			}
 		}
