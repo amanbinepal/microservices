@@ -90,8 +90,8 @@ def call(dockerRepoName, imageName, portNum) {
 					expression { env.GIT_BRANCH == 'origin/main' }
 				}
 				steps {
-					withCredentials([usernamePassword(credentialsId: 'b394d855-0512-4dc6-b554-e738752982c5', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
-						sh 'echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin docker.io'
+					withCredentials([string(credentialsId: 'AmanDocker', variable: 'TOKEN')]) {
+						sh 'echo $TOKEN | docker login -u amanbinepal --password-stdin docker.io'
 						dir("${dockerRepoName}") {
 							sh "docker build -t ${dockerRepoName}:latest --tag amanbinepal/${dockerRepoName}:${imageName} ."
 							sh "docker push amanbinepal/${dockerRepoName}:${imageName}"
