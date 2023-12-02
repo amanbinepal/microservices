@@ -84,7 +84,9 @@ def call(dockerRepoName, imageName, portNum) {
                             //sh "docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v $(pwd):/root/.cache/ aquasec/trivy ${dockerRepoName}:latest"
 							//sh 'docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v $(pwd):/root/.cache/ aquasec/trivy ' + dockerRepoName + ':latest'
 							//sh "docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v $(pwd):/root/.cache/ aquasec/trivy image ${dockerRepoName}:latest"
-							sh 'docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v $(pwd):/root/.cache/ aquasec/trivy image ' + dockerRepoName + ':latest'
+							//sh 'docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v $(pwd):/root/.cache/ aquasec/trivy image ' + dockerRepoName + ':latest'
+							sh 'docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v $(pwd):/root/.cache/ aquasec/trivy --scanners vuln image ' + dockerRepoName + ':latest'
+
 
 
                         }
