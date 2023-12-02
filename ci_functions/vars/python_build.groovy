@@ -71,6 +71,20 @@ def call(dockerRepoName, imageName, portNum) {
 
 				}
 			}
+
+			stage('Security Scan') {
+                steps {
+                    dir("${dockerRepoName}") {
+                        script {
+                            // Build the Docker image without pushing it
+                            sh "docker build -t ${dockerRepoName}:latest ."
+                            
+                            // Scan the Docker image for vulnerabilities with Trivy
+                            sh "docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v $(pwd):/root/.cache/ aquasec/trivy ${dockerRepoName}:latest"
+                        }
+                    }
+                }
+            }
 /*
 			stage ('Zip Archive') {
 				steps {
