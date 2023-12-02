@@ -71,6 +71,7 @@ def call(dockerRepoName, imageName, portNum) {
 
 				}
 			}
+/*
 			stage ('Zip Archive') {
 				steps {
 					dir("${dockerRepoName}") {
@@ -83,6 +84,7 @@ def call(dockerRepoName, imageName, portNum) {
 					}
 				}
 			}
+*/
 			stage('Package') {
 				when {
 					expression { env.GIT_BRANCH == 'origin/main' }
