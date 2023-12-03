@@ -128,10 +128,10 @@ def call(dockerRepoName, imageName, portNum) {
 				steps {
         			withCredentials([sshUserPrivateKey(credentialsId: 'ab_vm', keyFileVariable: 'SSH_KEY_FILE')]) {
             			// Pull the latest Docker image on the remote VM
-            			sh "ssh azureuser@aman3855.eastus.cloudapp.azure.com -i $SSH_KEY_FILE -o StrictHostKeyChecking=no \"docker pull amanbinepal/${dockerRepoName}:${imageName}\""
+            			sh "ssh azureuser@aman3855.eastus2.cloudapp.azure.com -i $SSH_KEY_FILE -o StrictHostKeyChecking=no \"docker pull amanbinepal/${dockerRepoName}:${imageName}\""
 
             			// Navigate to the directory containing docker-compose.yml and run docker compose up -d
-            			sh "ssh azureuser@aman3855.eastus.cloudapp.azure.com -i $SSH_KEY_FILE -o StrictHostKeyChecking=no 'cd ~/microservices/deployment && docker compose up -d'"
+            			sh "ssh azureuser@aman3855.eastus2.cloudapp.azure.com -i $SSH_KEY_FILE -o StrictHostKeyChecking=no 'cd ~/microservices/deployment && docker compose up -d'"
         			}
     			}
 			}
