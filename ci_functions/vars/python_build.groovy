@@ -71,7 +71,7 @@ def call(dockerRepoName, imageName, portNum) {
 
 				}
 			}
-
+/*
 			stage('Security Scan') {
                 steps {
                     dir("${dockerRepoName}") {
@@ -93,7 +93,7 @@ def call(dockerRepoName, imageName, portNum) {
                     }
                 }
             }
-/*
+
 			stage ('Zip Archive') {
 				steps {
 					dir("${dockerRepoName}") {
