@@ -14,6 +14,7 @@ def call(dockerRepoName, imageName, portNum) {
 						echo "Current Directory: ${pwd()}"
 						sh 'pip install -r requirements.txt --break-system-packages'
 						sh 'pip install --upgrade flask --break-system-packages'
+						sh "docker build -t ${dockerRepoName}:latest --tag amanbinepal/${dockerRepoName}:latest ."
 					}
                     
                 }
@@ -71,21 +72,22 @@ def call(dockerRepoName, imageName, portNum) {
 
 				}
 			}
-/*
+
 			stage('Security Scan') {
                 steps {
                     dir("${dockerRepoName}") {
                         script {
                             // Build the Docker image without pushing it
                             //sh "docker build -t ${dockerRepoName}:latest ."
-							sh 'docker build -t ' + dockerRepoName + ':latest .'
+							//sh 'docker build -t ' + dockerRepoName + ':latest .'
                             
                             // Scan the Docker image for vulnerabilities with Trivy
                             //sh "docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v $(pwd):/root/.cache/ aquasec/trivy ${dockerRepoName}:latest"
 							//sh 'docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v $(pwd):/root/.cache/ aquasec/trivy ' + dockerRepoName + ':latest'
 							//sh "docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v $(pwd):/root/.cache/ aquasec/trivy image ${dockerRepoName}:latest"
 							//sh 'docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v $(pwd):/root/.cache/ aquasec/trivy image ' + dockerRepoName + ':latest'
-							sh 'docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v $(pwd):/root/.cache/ aquasec/trivy --scanners vuln image ' + dockerRepoName + ':latest'
+							//sh 'docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v $(pwd):/root/.cache/ aquasec/trivy --scanners vuln image ' + dockerRepoName + ':latest'
+							sh 'docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v $(pwd):/root/.cache/ aquasec/trivy image --severity HIGH,CRITICAL ${dockerRepoName}:latest'
 
 
 
@@ -93,7 +95,7 @@ def call(dockerRepoName, imageName, portNum) {
                     }
                 }
             }
-
+/*
 			stage ('Zip Archive') {
 				steps {
 					dir("${dockerRepoName}") {
@@ -115,7 +117,7 @@ def call(dockerRepoName, imageName, portNum) {
 					withCredentials([string(credentialsId: 'AmanDocker', variable: 'TOKEN')]) {
 						sh 'echo $TOKEN | docker login -u amanbinepal --password-stdin docker.io'
 						dir("${dockerRepoName}") {
-							sh "docker build -t ${dockerRepoName}:latest --tag amanbinepal/${dockerRepoName}:latest ."
+							//sh "docker build -t ${dockerRepoName}:latest --tag amanbinepal/${dockerRepoName}:latest ."
 							sh "docker push amanbinepal/${dockerRepoName}:latest"
 						}
 					}
