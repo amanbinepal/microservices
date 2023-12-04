@@ -49,7 +49,7 @@ def kafka_init():
             producer = topic.get_sync_producer()
             logger.info("Successfully connected to Kafka")
             #remove this
-            print("Hello")
+            print("Lol")
             return client, producer
         except KafkaException:
             logger.error("Unable to connect to Kafka, retrying in %d seconds", retry_wait)
