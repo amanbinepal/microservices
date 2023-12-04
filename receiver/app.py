@@ -51,6 +51,7 @@ def kafka_init():
             #remove this
             print("Lol")
             print("Super")
+            print("Duper")
             return client, producer
         except KafkaException:
             logger.error("Unable to connect to Kafka, retrying in %d seconds", retry_wait)
