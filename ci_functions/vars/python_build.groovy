@@ -125,39 +125,39 @@ def call(dockerRepoName, imageName, portNum) {
 					}
 				}
 			}
-			// stage('Deliver') {
-			// 	when {
-			// 		expression { params.DEPLOY }
-			// 	}
-			// 	steps {
-        	// 		withCredentials([sshUserPrivateKey(credentialsId: 'ab_vm', keyFileVariable: 'SSH_KEY_FILE')]) {
-            // 			// Pull the latest Docker image on the remote VM
-            // 			sh "ssh azureuser@aman3855.eastus2.cloudapp.azure.com -i $SSH_KEY_FILE -o StrictHostKeyChecking=no \"docker pull amanbinepal/${dockerRepoName}:latest\""
-
-            // 			// Navigate to the directory containing docker-compose.yml and run docker compose up -d
-            // 			sh "ssh azureuser@aman3855.eastus2.cloudapp.azure.com -i $SSH_KEY_FILE -o StrictHostKeyChecking=no 'cd ~/microservices/deployment && docker compose up -d'"
-        	// 		}
-    		// 	}
-			// }
 			stage('Deliver') {
-				steps {
-					script {
-						// Check if the DEPLOY parameter is true or if the build was triggered by a GitHub webhook
-						boolean isGitHubTrigger = currentBuild.rawBuild.getCause(org.jenkinsci.plugins.github.webhook.WebhookCause) != null
-						if (isGitHubTrigger || params.DEPLOY) {
-							withCredentials([sshUserPrivateKey(credentialsId: 'ab_vm', keyFileVariable: 'SSH_KEY_FILE')]) {
-								// Pull the latest Docker image on the remote VM
-								sh "ssh azureuser@aman3855.eastus2.cloudapp.azure.com -i $SSH_KEY_FILE -o StrictHostKeyChecking=no \"docker pull amanbinepal/${dockerRepoName}:latest\""
-
-								// Navigate to the directory containing docker-compose.yml and run docker-compose up -d
-								sh "ssh azureuser@aman3855.eastus2.cloudapp.azure.com -i $SSH_KEY_FILE -o StrictHostKeyChecking=no 'cd ~/microservices/deployment && docker-compose up -d'"
-							}
-						} else {
-							echo "Skipping deployment because DEPLOY parameter is false and the build was not triggered by a GitHub webhook."
-						}
-					}
+				when {
+					expression { params.DEPLOY }
 				}
+				steps {
+        			withCredentials([sshUserPrivateKey(credentialsId: 'ab_vm', keyFileVariable: 'SSH_KEY_FILE')]) {
+            			// Pull the latest Docker image on the remote VM
+            			sh "ssh azureuser@aman3855.eastus2.cloudapp.azure.com -i $SSH_KEY_FILE -o StrictHostKeyChecking=no \"docker pull amanbinepal/${dockerRepoName}:latest\""
+
+            			// Navigate to the directory containing docker-compose.yml and run docker compose up -d
+            			sh "ssh azureuser@aman3855.eastus2.cloudapp.azure.com -i $SSH_KEY_FILE -o StrictHostKeyChecking=no 'cd ~/microservices/deployment && docker compose up -d'"
+        			}
+    			}
 			}
+			// stage('Deliver') {
+			// 	steps {
+			// 		script {
+			// 			// Check if the DEPLOY parameter is true or if the build was triggered by a GitHub webhook
+			// 			boolean isGitHubTrigger = currentBuild.rawBuild.getCause(org.jenkinsci.plugins.github.webhook.WebhookCause) != null
+			// 			if (isGitHubTrigger || params.DEPLOY) {
+			// 				withCredentials([sshUserPrivateKey(credentialsId: 'ab_vm', keyFileVariable: 'SSH_KEY_FILE')]) {
+			// 					// Pull the latest Docker image on the remote VM
+			// 					sh "ssh azureuser@aman3855.eastus2.cloudapp.azure.com -i $SSH_KEY_FILE -o StrictHostKeyChecking=no \"docker pull amanbinepal/${dockerRepoName}:latest\""
+
+			// 					// Navigate to the directory containing docker-compose.yml and run docker-compose up -d
+			// 					sh "ssh azureuser@aman3855.eastus2.cloudapp.azure.com -i $SSH_KEY_FILE -o StrictHostKeyChecking=no 'cd ~/microservices/deployment && docker-compose up -d'"
+			// 				}
+			// 			} else {
+			// 				echo "Skipping deployment because DEPLOY parameter is false and the build was not triggered by a GitHub webhook."
+			// 			}
+			// 		}
+			// 	}
+			// }
 
 		}
 	}
