@@ -1,0 +1,32 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Trigger') {
+            steps {
+                parallel(
+                    audit_ab: { build job: 'audit_ab' },
+                    processing_ab: { build job: 'processing_ab' },
+                    receiver_ab: { build job: 'receiver_ab' },
+                    storage_ab: { build job: 'storage_ab' }
+                )
+            }
+        }
+        stage('Deploy') {
+            when {
+                expression { env.GIT_BRANCH == 'origin/main' }
+            }
+            steps {
+                withCredentials([sshUserPrivateKey(credentialsId: 'ab_vm', keyFileVariable: 'SSH_KEY_FILE')]) {
+                    sh "ssh azureuser@aman3855.eastus2.cloudapp.azure.com -i ${SSH_KEY_FILE} -o StrictHostKeyChecking=no 'docker pull amanbinepal/processing:latest'"
+                    sh "ssh azureuser@aman3855.eastus2.cloudapp.azure.com -i ${SSH_KEY_FILE} -o StrictHostKeyChecking=no 'docker pull amanbinepal/audit_log:latest'"
+                    sh "ssh azureuser@aman3855.eastus2.cloudapp.azure.com -i ${SSH_KEY_FILE} -o StrictHostKeyChecking=no 'docker pull amanbinepal/storage:latest'"
+                    sh "ssh azureuser@aman3855.eastus2.cloudapp.azure.com -i ${SSH_KEY_FILE} -o StrictHostKeyChecking=no 'docker pull amanbinepal/receiver:latest'"
+                    sh "ssh azureuser@aman3855.eastus2.cloudapp.azure.com -i ${SSH_KEY_FILE} -o StrictHostKeyChecking=no 'docker pull amanbinepal/health:latest'"
+                    sh "ssh azureuser@aman3855.eastus2.cloudapp.azure.com -i ${SSH_KEY_FILE} -o StrictHostKeyChecking=no 'cd ~/microservices/deployment && docker compose up -d'"
+
+                }
+            }
+        }
+    }
+}
