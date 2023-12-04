@@ -18,9 +18,11 @@ pipeline {
             }
             steps {
                 withCredentials([sshUserPrivateKey(credentialsId: 'ab_vm', keyFileVariable: 'SSH_KEY_FILE')]) {
-                    def services = ['processing', 'audit_log', 'storage', 'receiver']
-                    for (service in services) {
-                        sh "ssh azureuser@aman3855.eastus2.cloudapp.azure.com -i ${SSH_KEY_FILE} -o StrictHostKeyChecking=no 'docker pull amanbinepal/${service}:latest'"
+                    script {
+                        def services = ['processing', 'audit_log', 'storage', 'receiver']
+                        for (service in services) {
+                            sh "ssh azureuser@aman3855.eastus2.cloudapp.azure.com -i ${SSH_KEY_FILE} -o StrictHostKeyChecking=no 'docker pull amanbinepal/${service}:latest'"
+                        }
                     }
                     sh "ssh azureuser@aman3855.eastus2.cloudapp.azure.com -i ${SSH_KEY_FILE} -o StrictHostKeyChecking=no 'cd ~/microservices/deployment && docker compose up -d'"
                 }
@@ -28,4 +30,5 @@ pipeline {
         }
     }
 }
+
 
