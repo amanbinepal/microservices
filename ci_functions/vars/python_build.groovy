@@ -14,7 +14,7 @@ def call(dockerRepoName, imageName, portNum) {
 						echo "Current Directory: ${pwd()}"
 						sh 'pip install -r requirements.txt --break-system-packages'
 						sh 'pip install --upgrade flask --break-system-packages'
-						sh "docker build -t ${dockerRepoName}:latest --tag amanbinepal/${dockerRepoName}:latest ."
+						sh "docker build -t ${imageName}:latest --tag amanbinepal/${imageName}:latest ."
 					}
                     
                 }
@@ -77,40 +77,11 @@ def call(dockerRepoName, imageName, portNum) {
                 steps {
                     dir("${dockerRepoName}") {
                         script {
-                            // Build the Docker image without pushing it
-                            //sh "docker build -t ${dockerRepoName}:latest ."
-							//sh 'docker build -t ' + dockerRepoName + ':latest .'
-                            
-                            // Scan the Docker image for vulnerabilities with Trivy
-                            //sh "docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v $(pwd):/root/.cache/ aquasec/trivy ${dockerRepoName}:latest"
-							//sh 'docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v $(pwd):/root/.cache/ aquasec/trivy ' + dockerRepoName + ':latest'
-							//sh "docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v $(pwd):/root/.cache/ aquasec/trivy image ${dockerRepoName}:latest"
-							//sh 'docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v $(pwd):/root/.cache/ aquasec/trivy image ' + dockerRepoName + ':latest'
-							//sh 'docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v $(pwd):/root/.cache/ aquasec/trivy --scanners vuln image ' + dockerRepoName + ':latest'
-							//sh 'docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v $(pwd):/root/.cache/ aquasec/trivy image --severity HIGH,CRITICAL ${dockerRepoName}:latest'
-							//sh "docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v $(pwd):/root/.cache/ aquasec/trivy image --severity HIGH,CRITICAL amanbinepal/${dockerRepoName}:latest"
-							sh 'docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v "$(pwd)":/root/.cache/ aquasec/trivy image --severity HIGH,CRITICAL amanbinepal/' + dockerRepoName + ':latest'
-
-
-
+							sh 'docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v "$(pwd)":/root/.cache/ aquasec/trivy image --severity HIGH,CRITICAL amanbinepal/' + imageName + ':latest'
                         }
                     }
                 }
             }
-/*
-			stage ('Zip Archive') {
-				steps {
-					dir("${dockerRepoName}") {
-						sh 'zip app.zip *.py'
-					}
-				}
-				post {
-					always {
-						archiveArtifacts artifacts: 'app.zip', fingerprint: true
-					}
-				}
-			}
-*/
 			stage('Package') {
 				when {
 					expression { env.GIT_BRANCH == 'origin/main' }
@@ -119,8 +90,7 @@ def call(dockerRepoName, imageName, portNum) {
 					withCredentials([string(credentialsId: 'AmanDocker', variable: 'TOKEN')]) {
 						sh 'echo $TOKEN | docker login -u amanbinepal --password-stdin docker.io'
 						dir("${dockerRepoName}") {
-							//sh "docker build -t ${dockerRepoName}:latest --tag amanbinepal/${dockerRepoName}:latest ."
-							sh "docker push amanbinepal/${dockerRepoName}:latest"
+							sh "docker push amanbinepal/${imageName}:latest"
 						}
 					}
 				}
@@ -131,34 +101,12 @@ def call(dockerRepoName, imageName, portNum) {
 				}
 				steps {
         			withCredentials([sshUserPrivateKey(credentialsId: 'ab_vm', keyFileVariable: 'SSH_KEY_FILE')]) {
-            			// Pull the latest Docker image on the remote VM
-            			sh "ssh azureuser@aman3855.eastus2.cloudapp.azure.com -i $SSH_KEY_FILE -o StrictHostKeyChecking=no \"docker pull amanbinepal/${dockerRepoName}:latest\""
+            			sh "ssh azureuser@aman3855.eastus2.cloudapp.azure.com -i $SSH_KEY_FILE -o StrictHostKeyChecking=no \"docker pull amanbinepal/${imageName}:latest\""
 
-            			// Navigate to the directory containing docker-compose.yml and run docker compose up -d
             			sh "ssh azureuser@aman3855.eastus2.cloudapp.azure.com -i $SSH_KEY_FILE -o StrictHostKeyChecking=no 'cd ~/microservices/deployment && docker compose up -d'"
         			}
     			}
 			}
-			// stage('Deliver') {
-			// 	steps {
-			// 		script {
-			// 			// Check if the DEPLOY parameter is true or if the build was triggered by a GitHub webhook
-			// 			boolean isGitHubTrigger = currentBuild.rawBuild.getCause(org.jenkinsci.plugins.github.webhook.WebhookCause) != null
-			// 			if (isGitHubTrigger || params.DEPLOY) {
-			// 				withCredentials([sshUserPrivateKey(credentialsId: 'ab_vm', keyFileVariable: 'SSH_KEY_FILE')]) {
-			// 					// Pull the latest Docker image on the remote VM
-			// 					sh "ssh azureuser@aman3855.eastus2.cloudapp.azure.com -i $SSH_KEY_FILE -o StrictHostKeyChecking=no \"docker pull amanbinepal/${dockerRepoName}:latest\""
-
-			// 					// Navigate to the directory containing docker-compose.yml and run docker-compose up -d
-			// 					sh "ssh azureuser@aman3855.eastus2.cloudapp.azure.com -i $SSH_KEY_FILE -o StrictHostKeyChecking=no 'cd ~/microservices/deployment && docker-compose up -d'"
-			// 				}
-			// 			} else {
-			// 				echo "Skipping deployment because DEPLOY parameter is false and the build was not triggered by a GitHub webhook."
-			// 			}
-			// 		}
-			// 	}
-			// }
-
 		}
 	}
 }
