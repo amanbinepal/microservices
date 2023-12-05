@@ -38,6 +38,7 @@ logger.info("Log Conf File: %s" % log_conf_file)
 
 def populate_stats():
     """ Periodically update stats """
+    logger.info("change")
     logger.info("Start Periodic Processing")
     if os.path.exists(app_config['datastore']['filename']):
         with open(app_config['datastore']['filename'], 'r') as file:

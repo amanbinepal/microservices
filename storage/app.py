@@ -70,6 +70,7 @@ def get_car(start_timestamp, end_timestamp):
 
 def get_schedule(start_timestamp, end_timestamp):
     """ Gets the schedule choice for the user """
+    logger.info("change")
     session = DB_SESSION()
     start_timestamp_datetime = datetime.datetime.strptime(start_timestamp, "%Y-%m-%dT%H:%M:%SZ")
     end_timestamp_datetime = datetime.datetime.strptime(end_timestamp, "%Y-%m-%dT%H:%M:%SZ")
